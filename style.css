@@ -1,0 +1,622 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #f8e9e8;
+    overflow-x: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =================================
+   الشاشة الأولى
+================================= */
+
+.cover-screen {
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.cover-image {
+    position: relative;
+
+    height: 100dvh;
+
+    aspect-ratio: 1024 / 1536;
+}
+
+.cover-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+
+/* منطقة الضغط */
+
+.open-button {
+    position: absolute;
+
+    left: 13%;
+    top: 24%;
+
+    width: 72%;
+    height: 47%;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition: transform 0.2s ease;
+}
+
+.open-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =================================
+   انتقال الشاشة
+================================= */
+
+.cover-screen.hide {
+    opacity: 0;
+    transform: scale(1.04);
+
+    pointer-events: none;
+}
+
+
+/* =================================
+   الشاشة الثانية
+================================= */
+
+.details-screen {
+    min-height: 100dvh;
+
+    padding: 55px 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fff8f7 0%,
+            #f8e9e8 55%,
+            #f2dedd 100%
+        );
+
+    color: #704548;
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.details-screen.show {
+    opacity: 1;
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* محتوى الدعوة */
+
+.details-content {
+    width: 100%;
+    max-width: 500px;
+
+    padding: 35px 20px;
+
+    border: 1px solid rgba(112, 69, 72, 0.18);
+
+    border-radius: 30px;
+
+    background: rgba(255, 250, 249, 0.72);
+
+    box-shadow:
+        0 15px 45px rgba(112, 69, 72, 0.12);
+}
+
+
+/* الزخارف */
+
+.small-flower {
+    font-size: 32px;
+
+    margin-bottom: 18px;
+
+    opacity: 0.75;
+}
+
+.bottom-flower {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+
+/* البسملة */
+
+.welcome {
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 20px;
+
+    opacity: 0.8;
+}
+
+
+/* نص الدعوة */
+
+.invitation-text {
+    font-size: 17px;
+
+    line-height: 2;
+
+    margin-bottom: 22px;
+}
+
+
+/* الأسماء */
+
+.details-content h1 {
+    font-size: 46px;
+
+    font-weight: normal;
+
+    line-height: 1.5;
+
+    margin: 5px 0;
+
+    color: #693d40;
+}
+
+.details-content h1 span {
+    font-size: 30px;
+
+    margin: 0 8px;
+
+    opacity: 0.7;
+}
+
+
+/* الخط الفاصل */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin: 12px 0 18px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    width: 65px;
+    height: 1px;
+
+    background: rgba(112, 69, 72, 0.3);
+}
+
+.divider span {
+    font-size: 20px;
+}
+
+
+/* المناسبة */
+
+.occasion {
+    font-size: 24px;
+
+    margin-bottom: 28px;
+
+    color: #805054;
+}
+
+
+/* =================================
+   معلومات المناسبة
+================================= */
+
+.event-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+}
+
+.info-box {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    border: 1px solid rgba(112, 69, 72, 0.1);
+}
+
+.icon {
+    font-size: 25px;
+
+    width: 42px;
+}
+
+.info-box div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 3px;
+}
+
+.label {
+    font-size: 13px;
+
+    opacity: 0.65;
+
+    margin-bottom: 2px;
+}
+
+.info-box strong {
+    font-size: 17px;
+
+    font-weight: normal;
+}
+
+
+/* =================================
+   العد التنازلي
+================================= */
+
+.countdown-title {
+    font-size: 17px;
+
+    margin-bottom: 13px;
+
+    color: #805054;
+}
+
+.countdown {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 7px;
+
+    direction: ltr;
+}
+
+.time-box {
+    padding: 12px 5px;
+
+    border-radius: 15px;
+
+    background: #fffafa;
+
+    border: 1px solid rgba(112, 69, 72, 0.13);
+
+    box-shadow:
+        0 5px 15px rgba(112, 69, 72, 0.06);
+}
+
+.time-box span {
+    display: block;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #704548;
+}
+
+.time-box small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    color: #805054;
+}
+
+
+/* =================================
+   الخاتمة
+================================= */
+
+.closing {
+    margin-top: 30px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    opacity: 0.8;
+}
+
+
+/* =================================
+   تحسين الشاشات الصغيرة
+================================= */
+
+@media (max-width: 380px) {
+
+    .details-screen {
+        padding: 30px 15px;
+    }
+
+    .details-content {
+        padding: 28px 14px;
+    }
+
+    .details-content h1 {
+        font-size: 38px;
+    }
+
+    .invitation-text {
+        font-size: 15px;
+    }
+
+    .occasion {
+        font-size: 21px;
+    }
+
+    .info-box strong {
+        font-size: 15px;
+    }
+
+    .time-box span {
+        font-size: 21px;
+    }
+}
+
+   
+
+
+/* =================================
+   صورة الدعوة الثانية
+================================= */
+
+.details-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    margin-bottom: 25px;
+}
+
+
+/* =================================
+   قسم الموقع
+================================= */
+
+.location-section {
+    text-align: center;
+    padding: 24px 15px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(112, 69, 72, 0.15);
+}
+
+.location-section h2 {
+    margin-bottom: 10px;
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.location-section p {
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.location-button {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 30px;
+    background: #8b5559;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+
+/* =================================
+   العداد - تصميم أنيق
+================================= */
+
+.countdown-section {
+    text-align: center;
+    padding: 28px 12px;
+    margin-top: 8px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 248, 247, 0.62)
+        );
+
+    border: 1px solid rgba(112, 69, 72, 0.14);
+
+    box-shadow:
+        0 10px 30px rgba(112, 69, 72, 0.08);
+}
+
+.countdown-section h2 {
+    margin-bottom: 22px;
+
+    font-size: 22px;
+    font-weight: normal;
+
+    color: #704548;
+
+    letter-spacing: 0.3px;
+}
+
+.countdown {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+
+    direction: ltr;
+}
+
+.time-box {
+    position: relative;
+
+    padding: 15px 4px 12px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(112, 69, 72, 0.12);
+
+    box-shadow:
+        0 6px 18px rgba(112, 69, 72, 0.07);
+
+    overflow: hidden;
+}
+
+.time-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20%;
+    right: 20%;
+
+    height: 2px;
+
+    border-radius: 0 0 10px 10px;
+
+    background: rgba(112, 69, 72, 0.25);
+}
+
+.time-box span {
+    display: block;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    color: #693d40;
+}
+
+.time-box small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #805054;
+
+    opacity: 0.8;
+}
+
+/* =================================
+   تحسين الهاتف
+================================= */
+
+@media (max-width: 500px) {
+
+    .details-screen {
+        padding: 20px 10px;
+    }
+
+    .details-content {
+        padding: 10px;
+    }
+
+    .details-image {
+        border-radius: 14px;
+    }
+
+}
+/* =================================
+   حركة لطيفة للعداد
+================================= */
+
+.time-box span {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.time-box span.tick {
+    animation: countdownTick 0.35s ease;
+}
+
+@keyframes countdownTick {
+    0% {
+        transform: translateY(-4px);
+        opacity: 0.45;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

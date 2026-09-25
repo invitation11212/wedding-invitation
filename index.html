@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>زيد & ياسمين</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         الشاشة الأولى
+    ========================== -->
+
+    <section class="cover-screen" id="coverScreen">
+
+        <div class="cover-image">
+
+            <img src="cover.jpeg" alt="دعوة زفاف زيد وياسمين">
+
+            <button
+                class="open-button"
+                id="openButton"
+                aria-label="افتح الدعوة">
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         الشاشة الثانية
+    ========================== -->
+
+   <section class="details-screen" id="detailsScreen">
+
+    <div class="details-content">
+
+        <!-- صورة الدعوة -->
+        <img
+            class="details-image"
+            src="details.jpeg"
+            alt="دعوة زفاف زيد وياسمين"
+        >
+
+        <!-- الموقع -->
+        <div class="location-section">
+
+            <h2>📍 موقع القاعة</h2>
+
+            <p>قاعات الكرم</p>
+
+            <a
+    class="location-button"
+    href="https://maps.app.goo.gl/YXYwab77LQf4yD4CA"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    فتح موقع القاعة
+</a>
+
+        </div>
+
+        <!-- العداد -->
+        <div class="countdown-section">
+
+            <h2>🤍 متبقي على فرحتنا</h2>
+
+            <div class="countdown">
+
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>يوم</small>
+                </div>
+
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>ساعة</small>
+                </div>
+
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>دقيقة</small>
+                </div>
+
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>ثانية</small>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="closing">
+            حضوركم يكمّل فرحتنا 🤍
+        </p>
+
+    </div>
+
+</section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
