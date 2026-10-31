@@ -1,96 +1,98 @@
-const openButton = document.getElementById("openButton");
-const coverScreen = document.getElementById("coverScreen");
-const detailsScreen = document.getElementById("detailsScreen");
+
+// عناصر الصفحات والأزرار
+const cover = document.getElementById("cover");
+const invitation = document.getElementById("invitation");
+const openButton = document.getElementById("openInvitation");
+
+const backButton = document.getElementById("backToCover");
 
 
-// =================================
-// فتح الدعوة والانتقال للشاشة الثانية
-// =================================
-
+ // فتح الدعوة والانتقال إلى التفاصيل
 openButton.addEventListener("click", function () {
+    cover.hidden = true;
+    invitation.hidden = false;
 
-    coverScreen.classList.add("hide");
+    // تشغيل حركة أسماء العروسين
+    const coupleNames = document.getElementById("coupleNames");
 
-    setTimeout(function () {
+    if (coupleNames) {
+        coupleNames.classList.remove("is-animated");
+        void coupleNames.offsetWidth;
+        coupleNames.classList.add("is-animated");
+    }
 
-        detailsScreen.classList.add("show");
-
-        detailsScreen.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }, 300);
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
 
 
-// =================================
-// العد التنازلي
-// =================================
+// العودة إلى الغلاف
+backButton.addEventListener("click", function () {
+    invitation.hidden = true;
+    cover.hidden = false;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
-const weddingDate =
-    new Date("2026-11-13T17:30:00+03:00").getTime();
+// موعد الزفاف: الجمعة 13 نوفمبر 2026، الساعة 5:30 مساءً بتوقيت الأردن
+const weddingDate = new Date("2026-11-13T17:30:00+03:00").getTime();
 
+// تحويل الأرقام إلى أرقام عربية
+function toArabicNumbers(number) {
+    return String(number).replace(/\d/g, function (digit) {
+        return "٠١٢٣٤٥٦٧٨٩"[digit];
+    });
+}
 
+// تحديث العد التنازلي
 function updateCountdown() {
+    const now = Date.now();
+    const remaining = weddingDate - now;
 
-    const now = new Date().getTime();
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+    const countdown = document.getElementById("countdown");
 
-    const difference = weddingDate - now;
+    if (remaining <= 0) {
+        daysElement.textContent = "٠";
+        hoursElement.textContent = "٠";
+        minutesElement.textContent = "٠";
+        secondsElement.textContent = "٠";
 
-
-    if (difference <= 0) {
-
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-
+        const heading = document.querySelector(".countdown-section h2");
+        if (heading) {
+            heading.textContent = "اليوم فرحتنا بكم!";
+        }
         return;
     }
 
-
-    const days = Math.floor(
-        difference / (1000 * 60 * 60 * 24)
-    );
-
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
+        (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-
     const minutes = Math.floor(
-        (difference / (1000 * 60)) % 60
+        (remaining % (1000 * 60 * 60)) / (1000 * 60)
     );
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
-    const seconds = Math.floor(
-        (difference / 1000) % 60
+    daysElement.textContent = toArabicNumbers(days);
+    hoursElement.textContent = toArabicNumbers(
+        String(hours).padStart(2, "0")
     );
-
-
-    document.getElementById("days").textContent =
-        String(days).padStart(2, "0");
-
-    document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-
-    document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-   const secondsElement = document.getElementById("seconds");
-
-secondsElement.textContent =
-    String(seconds).padStart(2, "0");
-
-secondsElement.classList.remove("tick");
-
-// إعادة تشغيل الحركة في كل ثانية
-void secondsElement.offsetWidth;
-
-secondsElement.classList.add("tick");
+    minutesElement.textContent = toArabicNumbers(
+        String(minutes).padStart(2, "0")
+    );
+    secondsElement.textContent = toArabicNumbers(
+        String(seconds).padStart(2, "0")
+    );
 }
 
-
+// تشغيل العد التنازلي وتحديثه كل ثانية
 updateCountdown();
-
 setInterval(updateCountdown, 1000);
